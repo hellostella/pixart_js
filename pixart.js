@@ -17,10 +17,13 @@
 //     </form>
 //     <div class="brush"</div>
 //   </div>
-
-var colorSet = document.getElementById("set-color")
-var colorField = document.getElementById("color-field")
-var brush = document.querySelector(".brush")
+$(document).ready(function(){
+// var colorSet = document.getElementById("set-color")
+var colorSet = $("#set-color")
+var colorField = $("#color-field")
+// var colorField = document.getElementById("color-field")
+// var brush = document.querySelector(".brush")
+var brush = $(".brush")
 // ###Commit 1
 //
 // * When I click the "Set Color" button,
@@ -29,9 +32,12 @@ var brush = document.querySelector(".brush")
 // (**Hint:**
 // You will need to use `event.preventDefault()` somewhere in your code.)
 
-colorSet.addEventListener("mouseover", function(event){
+colorSet.on("mouseover", function(event){
   event.preventDefault();
-    brush.style.background = colorField.value
+    // brush.style.background = colorField.value
+    $(".brush").css({
+      "background" : $(".colorField")
+    })
 });
 
 // ###Commit 2
@@ -66,12 +72,17 @@ colorSet.addEventListener("mouseover", function(event){
 // it changes the color of that individual square to "green"
 
   for(var div = 0; div < 8000; div++){
-    var squareClass = document.createElement("div");
-      squareClass.className = "square";
-        squareClass.addEventListener("mouseover", function(event){
-          this.style.backgroundColor = colorField.value;
+    // var squareClass = document.createElement("div");
+    var squareClass = $("<div></div>");
+      squareClass.addClass("square");
+        squareClass.on("mouseover", function(event){
+          // $(this).style.backgroundColor = colorField.value;
+          $(".square").css({
+            "background" : $(".colorField")
+          })
       })
-            document.body.appendChild(squareClass);
+            // document.body.appendChild(squareClass);
+            $(".square").append(squareClass)
 }
 
 // ###Commit 5
@@ -86,3 +97,4 @@ colorSet.addEventListener("mouseover", function(event){
 // * Modify your code so that you are creating 8000 divs instead of 20.
 // * Change the event that changes your box colors from 'click' to 'mouseover'
 // * Paint a picture!
+})
